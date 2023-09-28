@@ -1,13 +1,13 @@
 'use strict';
 
-const rule = require('.'),
+const { rules } = require('.'),
   RuleTester = require('eslint').RuleTester;
 
 const ruleTester = new RuleTester({
   parser: require.resolve('@typescript-eslint/parser'),
 });
 
-ruleTester.run('no-implicit-any-function-args', rule, {
+ruleTester.run('no-implicit-any-function-args', rules['no-implicit-any-function-args'], {
   valid: [
     {
       code: 'const f = (a:number, b:number) => null'
