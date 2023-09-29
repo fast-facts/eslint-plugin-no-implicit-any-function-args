@@ -5,7 +5,11 @@ const createRule = ESLintUtils.RuleCreator(
   () => 'https://github.com/fast-facts/eslint-plugin-no-implicit-any-function-args'
 );
 
-export type Options = unknown[];
+export type Options = [
+  {
+    ignorePattern?: string,
+  }
+];
 export type MessageIds = 'noImplicitAnyArg';
 
 export const rules = {
@@ -20,10 +24,17 @@ export const rules = {
       messages: {
         noImplicitAnyArg: 'Argument \'{{ name }}\' requires a type'
       },
-      schema: []
+      schema: [{
+        type: 'object',
+        properties: {
+          ignorePattern: {
+            type: 'string'
+          }
+        }
+      }]
     },
-    defaultOptions: [],
-    create: context => {
+    defaultOptions: [{}],
+    create: (context, [options]) => {
       if (
         !context.parserServices ||
         !context.parserServices.program ||
@@ -34,6 +45,8 @@ export const rules = {
         );
       }
 
+      const ignoreRegex = options.ignorePattern ? new RegExp(options.ignorePattern) : undefined;
+
       const service = context.parserServices;
       const typeChecker = service.program.getTypeChecker();
 
@@ -43,15 +56,16 @@ export const rules = {
             const typescriptParam = context.parserServices!.esTreeNodeToTSNodeMap.get(param);
             const type = typeChecker.getTypeAtLocation(typescriptParam);
 
-            if ((type.flags & TypeFlags.Any) !== 0) {
-              context.report({
-                node: param,
-                messageId: 'noImplicitAnyArg',
-                data: {
-                  name: param.name
-                }
-              });
-            }
+            if ((type.flags & TypeFlags.Any) === 0) continue;
+            if (ignoreRegex?.test(param.name)) continue;
+
+            context.report({
+              node: param,
+              messageId: 'noImplicitAnyArg',
+              data: {
+                name: param.name
+              }
+            });
           }
         }
       }
