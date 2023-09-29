@@ -9,7 +9,7 @@ export type Options = unknown[];
 export type MessageIds = 'noImplicitAnyArg';
 
 export const rule = createRule<Options, MessageIds>({
-  name: 'eslint-plugin-no-implicit-any-function-args',
+  name: 'no-implicit-any-function-args',
   meta: {
     type: 'problem',
     docs: {
