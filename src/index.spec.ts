@@ -22,6 +22,7 @@ ruleTester.run('no-implicit-any-function-args', rule, {
     getValidTestCase('(a:number, b:number) => null'),
     getValidTestCase('(a:number, b = 0) => null'),
     getValidTestCase('const f: (a:number, b = 0) => null = (a, b) => null'),
+    getValidTestCase('function f(a: number, b: (b: number) => null) { }; f(1, b => null)'),
     // getValidTestCase('const f: (a:number, b: any) => null = (a, b) => null'), // Try and figure this out later
   ],
 

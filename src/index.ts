@@ -1,4 +1,5 @@
 import { ESLintUtils } from '@typescript-eslint/utils';
+import { TypeFlags } from 'typescript';
 
 const createRule = ESLintUtils.RuleCreator(
   () => 'https://github.com/fast-facts/eslint-plugin-no-implicit-any-function-args'
@@ -41,7 +42,7 @@ export const rule = createRule<Options, MessageIds>({
           const typescriptParam = context.parserServices!.esTreeNodeToTSNodeMap.get(param);
           const type = typeChecker.getTypeAtLocation(typescriptParam);
 
-          if (type.flags === 1) {
+          if ((type.flags & TypeFlags.Any) !== 0) {
             context.report({
               node: param,
               messageId: 'noImplicitAnyArg',
