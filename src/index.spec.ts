@@ -1,7 +1,7 @@
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { TSESLint } from '@typescript-eslint/utils';
 import * as path from 'path';
-import { rule, Options, MessageIds } from '.';
+import { rules, Options, MessageIds } from '.';
 
 const ruleTester = new RuleTester({
   parser: require.resolve('@typescript-eslint/parser'),
@@ -13,7 +13,7 @@ const ruleTester = new RuleTester({
   }
 });
 
-ruleTester.run('no-implicit-any-function-args', rule, {
+ruleTester.run('no-implicit-any-function-args', rules['no-implicit-any-function-args'], {
   valid: [
     getValidTestCase('const f = (a:number, b:number) => null'),
     getValidTestCase('const f = (a:number, b = 0) => null'),
