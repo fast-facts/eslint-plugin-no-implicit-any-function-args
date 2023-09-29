@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "nodenext",
+    "strict": true,
+    "lib": [
+      "es5",
+      "dom"
+    ],
+    "types": []
+  },
+  "include": [
+    "./src/index.spec.ts",
+    "./src/fixtures/*.ts",
+    "jest.config.ts"
+  ]
+}

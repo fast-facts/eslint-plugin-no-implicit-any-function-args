@@ -18,7 +18,9 @@ jobs:
           node-version: 20
       - run: npm install
 
+      - run: npm run lint
       - run: npm test
+      - run: npm run build
 
       - uses: codfish/semantic-release-action@v2
         with:
@@ -26,7 +28,11 @@ jobs:
             [
               "@semantic-release/commit-analyzer",
               "@semantic-release/release-notes-generator",
-              "@semantic-release/npm",
+              [
+                "@semantic-release/npm", {
+                  "pkgRoot": "dist"
+                }
+              ],
               "@semantic-release/github"
             ]
         env:
