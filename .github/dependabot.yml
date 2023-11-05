@@ -14,3 +14,11 @@ updates:
       prefix: fix
       prefix-development: chore
       include: scope
+    groups:
+      typescript and eslint:
+        patterns:
+          - '*typescript*'
+          - '*eslint*'
+      jest:
+        patterns:
+          - '*jest*'
