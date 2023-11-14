@@ -36,9 +36,9 @@ export const rules = {
     defaultOptions: [{}],
     create: (context, [options]) => {
       if (
-        !context.parserServices ||
-        !context.parserServices.program ||
-        !context.parserServices.esTreeNodeToTSNodeMap
+        !context.sourceCode.parserServices ||
+        !context.sourceCode.parserServices.program ||
+        !context.sourceCode.parserServices.esTreeNodeToTSNodeMap
       ) {
         throw new Error(
           'You have used a rule which requires parserServices to be generated. You must therefore provide a value for the "parserOptions.project" property for @typescript-eslint/parser.'
@@ -47,13 +47,13 @@ export const rules = {
 
       const ignoreRegex = options.ignorePattern ? new RegExp(options.ignorePattern) : undefined;
 
-      const service = context.parserServices;
+      const service = context.sourceCode.parserServices;
       const typeChecker = service.program.getTypeChecker();
 
       function functionTest(node: any) {
         for (const param of node.params) {
           if (!param.typeAnnotation && !param.right) {
-            const typescriptParam = context.parserServices!.esTreeNodeToTSNodeMap.get(param);
+            const typescriptParam = context.sourceCode.parserServices.esTreeNodeToTSNodeMap.get(param);
             const type = typeChecker.getTypeAtLocation(typescriptParam);
 
             if ((type.flags & TypeFlags.Any) === 0) continue;
