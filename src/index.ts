@@ -48,13 +48,16 @@ export const rules = {
       const ignoreRegex = options.ignorePattern ? new RegExp(options.ignorePattern) : undefined;
 
       const service = context.sourceCode.parserServices;
-      const typeChecker = service.program.getTypeChecker();
+      const typeChecker = service.program?.getTypeChecker();
 
       function functionTest(node: any) {
         for (const param of node.params) {
           if (!param.typeAnnotation && !param.right) {
-            const typescriptParam = context.sourceCode.parserServices.esTreeNodeToTSNodeMap.get(param);
-            const type = typeChecker.getTypeAtLocation(typescriptParam);
+            const typescriptParam = context.sourceCode.parserServices?.esTreeNodeToTSNodeMap?.get(param);
+            if (!typescriptParam) continue;
+
+            const type = typeChecker?.getTypeAtLocation(typescriptParam);
+            if (!type) continue;
 
             if ((type.flags & TypeFlags.Any) === 0) continue;
             if (ignoreRegex?.test(param.name)) continue;
