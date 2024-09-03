@@ -1,17 +1,8 @@
-import { RuleTester } from '@typescript-eslint/rule-tester';
-import { TSESLint } from '@typescript-eslint/utils';
+import { InvalidTestCase, RuleTester, ValidTestCase } from '@typescript-eslint/rule-tester';
 import { rules, Options, MessageIds } from '.';
 import * as path from 'path';
 
-const ruleTester = new RuleTester({
-  parser: require.resolve('@typescript-eslint/parser'),
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    tsconfigRootDir: path.resolve(__dirname, '..'),
-    project: './tsconfig.spec.json'
-  }
-});
+const ruleTester = new RuleTester();
 
 ruleTester.run('no-implicit-any-function-args', rules['no-implicit-any-function-args'], {
   valid: [
@@ -29,28 +20,41 @@ ruleTester.run('no-implicit-any-function-args', rules['no-implicit-any-function-
 
   invalid: [
     getInvalidTestCase('const f = (a:number, b) => null'),
-    getInvalidTestCase('const f = (a:number, b) => null'),
     getInvalidTestCase('function f(a:number, b) {}'),
-    getInvalidTestCase('function f(a:number, b) {}'),
-    getInvalidTestCase('(a:number, b) => null'),
     getInvalidTestCase('(a:number, b) => null'),
     getInvalidTestCase('_ => null'),
   ]
 });
 
-function getValidTestCase(code: string, options?: Options): TSESLint.ValidTestCase<Options> {
+function getValidTestCase(code: string, options?: Options): ValidTestCase<Options> {
   return {
     code,
     options: options || [{}],
-    filename: 'src/fixtures/file.ts'
+    filename: 'src/fixtures/file.ts',
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module',
+        tsconfigRootDir: path.resolve(__dirname, '..'),
+        project: './tsconfig.spec.json'
+      }
+    }
   };
 }
 
-function getInvalidTestCase(code: string, options?: Options): TSESLint.InvalidTestCase<MessageIds, Options> {
+function getInvalidTestCase(code: string, options?: Options): InvalidTestCase<MessageIds, Options> {
   return {
     code,
     options: options || [{}],
     errors: [{ messageId: 'noImplicitAnyArg' }],
-    filename: 'src/fixtures/file.ts'
+    filename: 'src/fixtures/file.ts',
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module',
+        tsconfigRootDir: path.resolve(__dirname, '..'),
+        project: './tsconfig.spec.json'
+      }
+    }
   };
 }
