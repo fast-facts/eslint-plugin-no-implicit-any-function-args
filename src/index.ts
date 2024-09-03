@@ -18,8 +18,7 @@ export const rules = {
     meta: {
       type: 'problem',
       docs: {
-        description: 'No implicit any for a function argument is allowed.',
-        requiresTypeChecking: true
+        description: 'No implicit any for a function argument is allowed.'
       },
       messages: {
         noImplicitAnyArg: 'Argument \'{{ name }}\' requires a type'
