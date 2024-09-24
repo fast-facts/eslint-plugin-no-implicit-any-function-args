@@ -1,5 +1,5 @@
 import { InvalidTestCase, RuleTester, ValidTestCase } from '@typescript-eslint/rule-tester';
-import { rules, Options, MessageIds } from '.';
+import { MessageIds, Options, rules } from '.';
 import * as path from 'path';
 
 const ruleTester = new RuleTester();
@@ -23,7 +23,7 @@ ruleTester.run('no-implicit-any-function-args', rules['no-implicit-any-function-
     getInvalidTestCase('function f(a:number, b) {}'),
     getInvalidTestCase('(a:number, b) => null'),
     getInvalidTestCase('_ => null'),
-  ]
+  ],
 });
 
 function getValidTestCase(code: string, options?: Options): ValidTestCase<Options> {
@@ -36,9 +36,9 @@ function getValidTestCase(code: string, options?: Options): ValidTestCase<Option
         ecmaVersion: 2018,
         sourceType: 'module',
         tsconfigRootDir: path.resolve(__dirname, '..'),
-        project: './tsconfig.spec.json'
-      }
-    }
+        project: './tsconfig.spec.json',
+      },
+    },
   };
 }
 
@@ -53,8 +53,8 @@ function getInvalidTestCase(code: string, options?: Options): InvalidTestCase<Me
         ecmaVersion: 2018,
         sourceType: 'module',
         tsconfigRootDir: path.resolve(__dirname, '..'),
-        project: './tsconfig.spec.json'
-      }
-    }
+        project: './tsconfig.spec.json',
+      },
+    },
   };
 }

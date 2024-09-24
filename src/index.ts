@@ -7,7 +7,7 @@ const createRule = ESLintUtils.RuleCreator(
 
 export type Options = [
   {
-    ignorePattern?: string,
+    ignorePattern?: string;
   }
 ];
 export type MessageIds = 'noImplicitAnyArg';
@@ -18,19 +18,19 @@ export const rules = {
     meta: {
       type: 'problem',
       docs: {
-        description: 'No implicit any for a function argument is allowed.'
+        description: 'No implicit any for a function argument is allowed.',
       },
       messages: {
-        noImplicitAnyArg: 'Argument \'{{ name }}\' requires a type'
+        noImplicitAnyArg: 'Argument \'{{ name }}\' requires a type',
       },
       schema: [{
         type: 'object',
         properties: {
           ignorePattern: {
-            type: 'string'
-          }
-        }
-      }]
+            type: 'string',
+          },
+        },
+      }],
     },
     defaultOptions: [{}],
     create: (context, [options]) => {
@@ -65,8 +65,8 @@ export const rules = {
               node: param,
               messageId: 'noImplicitAnyArg',
               data: {
-                name: param.name
-              }
+                name: param.name,
+              },
             });
           }
         }
@@ -75,8 +75,8 @@ export const rules = {
       return {
         FunctionDeclaration: functionTest,
         FunctionExpression: functionTest,
-        ArrowFunctionExpression: functionTest
+        ArrowFunctionExpression: functionTest,
       };
-    }
-  })
+    },
+  }),
 };

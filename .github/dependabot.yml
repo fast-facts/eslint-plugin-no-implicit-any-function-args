@@ -19,6 +19,8 @@ updates:
         patterns:
           - '*typescript*'
           - '*eslint*'
+        exclude-patterns:
+          - 'eslint-config-final'
       jest:
         patterns:
           - '*jest*'
