@@ -10,31 +10,24 @@ npm install --save-dev eslint-plugin-no-implicit-any-function-args
 
 ## Setup
 
-```json
-{
-  "plugins": [
-    "no-implicit-any-function-args",
-  ],
-  "rules": {
-    "no-implicit-any-function-args/no-implicit-any-function-args": "error",
-  },
-}
-```
+```js
+const tseslint = require('typescript-eslint');
 
-or
+const noImplicitAnyFunctionArgs = require('eslint-plugin-no-implicit-any-function-args');
 
-```json
-{
-  "plugins": [
-    "no-implicit-any-function-args",
-  ],
-  "rules": {
-    "no-implicit-any-function-args/no-implicit-any-function-args": [
-      "error",
-      {
-        ignorePattern: '^_'
-      }
-    ]
+module.exports = tseslint.config(
+  // Javascript
+  {
+    files: ['**/*.js'],
+
+    plugins: {
+      'no-implicit-any-function-args': noImplicitAnyFunctionArgs,
+    },
+
+    rules: {
+      'no-implicit-any-function-args/no-implicit-any-function-args': ['error', {
+        ignorePattern: '^_',
+      }],
+    },
   },
-}
 ```
