@@ -30,7 +30,7 @@
     "@types/node": "^24.9.2",
     "@typescript-eslint/rule-tester": "^8.46.2",
     "copyfiles": "^2.4.1",
-    "eslint": "^9.38.0",
+    "eslint": "^9.39.0",
     "eslint-config-final": "^1.6.20",
     "jest": "^30.2.0",
     "ts-api-utils": "^2.1.0",
