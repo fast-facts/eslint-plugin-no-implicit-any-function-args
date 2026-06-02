@@ -50,12 +50,6 @@
             "excludePackagePatterns": [
                 "eslint-config-final"
             ]
-        },
-        {
-            "groupName": "jest",
-            "packagePatterns": [
-                "*jest*"
-            ]
         }
     ]
 }

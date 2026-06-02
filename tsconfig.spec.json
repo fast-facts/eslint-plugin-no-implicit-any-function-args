@@ -13,6 +13,6 @@
   "include": [
     "./src/index.spec.ts",
     "./src/fixtures/*.ts",
-    "jest.config.ts"
+    "vite.config.ts"
   ]
 }
