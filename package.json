@@ -30,7 +30,7 @@
     "@typescript-eslint/rule-tester": "^8.61.0",
     "copyfiles": "^2.4.1",
     "eslint": "^10.4.1",
-    "eslint-config-final": "^1.7.13",
+    "eslint-config-final": "^1.7.14",
     "ts-api-utils": "^2.5.0",
     "tslib": "^2.8.1",
     "typescript-eslint": "^8.61.0",
