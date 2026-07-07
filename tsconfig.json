@@ -6,6 +6,9 @@
       "ES2018",
       "dom"
     ],
+    "types": [
+      "node"
+    ],
     "module": "nodenext",
     "target": "ES2018",
     "declaration": true,
@@ -22,10 +25,7 @@
     "sourceMap": true,
     "strict": true,
     "strictBindCallApply": false,
-    "strictNullChecks": true,
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
+    "strictNullChecks": true
   },
   "include": [
     "./src/index.ts",
