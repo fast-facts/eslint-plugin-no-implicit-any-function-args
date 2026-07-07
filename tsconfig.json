@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "./src",
     "outDir": "dist",
     "lib": [
       "ES2018",
@@ -7,10 +8,8 @@
     ],
     "module": "nodenext",
     "target": "ES2018",
-    "alwaysStrict": false,
     "declaration": true,
     "declarationMap": true,
-    "downlevelIteration": true,
     "importHelpers": true,
     "inlineSources": true,
     "noEmitHelpers": true,
