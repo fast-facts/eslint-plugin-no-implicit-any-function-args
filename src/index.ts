@@ -8,7 +8,7 @@ const createRule = ESLintUtils.RuleCreator(
 export type Options = [
   {
     ignorePattern?: string;
-  }
+  },
 ];
 export type MessageIds = 'noImplicitAnyArg';
 
@@ -31,12 +31,11 @@ export const rules = {
           },
         },
       }],
+      defaultOptions: [{}],
     },
-    defaultOptions: [{}],
     create: (context, [options]) => {
       if (
-        !context.sourceCode.parserServices ||
-        !context.sourceCode.parserServices.program ||
+        !context.sourceCode.parserServices?.program ||
         !context.sourceCode.parserServices.esTreeNodeToTSNodeMap
       ) {
         throw new Error(
