@@ -29,7 +29,7 @@
     "@types/node": "^26.6.6",
     "@typescript-eslint/rule-tester": "^8.72.2",
     "copyfiles": "^2.4.1",
-    "eslint": "^10.14.0",
+    "eslint": "^10.15.0",
     "eslint-config-final": "^1.11.13",
     "ts-api-utils": "^2.5.0",
     "tslib": "^2.9.1",
